@@ -8,3 +8,6 @@ __pycache__/
 
 # Logs
 app.log
+
+# Local models
+models/

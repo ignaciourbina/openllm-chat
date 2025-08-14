@@ -24,8 +24,10 @@ app.logger.setLevel(logging.INFO)
 
 
 # Initialize the OpenAI client to connect to the OpenLLM server
+# Use the OPENLLM_BASE_URL from env vars, with a fallback for normal operation
+base_url = os.environ.get("OPENLLM_BASE_URL", "http://localhost:3000/v1")
 client = OpenAI(
-    base_url="http://localhost:3000/v1",
+    base_url=base_url,
     api_key=os.environ.get("OPENAI_API_KEY", "na")  # Use a dummy key if not set
 )
 
@@ -46,7 +48,7 @@ def chat():
     try:
         # Send a request to the model
         completion = client.chat.completions.create(
-            model="dolly-v2",  # Specify the model you are serving
+            model="TinyLlama/TinyLlama-1.1B-Chat-v1.0",  # Specify the model you are serving
             messages=[
                 {"role": "user", "content": user_message}
             ]

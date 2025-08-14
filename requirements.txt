@@ -2,3 +2,8 @@ Flask
 openllm
 python-dotenv
 openai
+pytest
+pytest-timeout
+huggingface_hub
+git+https://github.com/huggingface/transformers.git
+accelerate
