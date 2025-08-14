@@ -41,7 +41,7 @@ if ! lsof -i:"$OPENLLM_PORT" > /dev/null; then
     ./install_deps.sh > /dev/null
     
     # Start the server using the venv executable and get its PID
-    "$VENV_BIN/openllm" serve gemma3:1b &
+    "$VENV_BIN/openllm" serve models/TinyLlama-1.1B-Chat-v1.0 &
     OPENLLM_PID=$!
     echo "OpenLLM server starting with PID: $OPENLLM_PID"
     
@@ -62,6 +62,7 @@ fi
 # Start the Flask web server using the venv python
 echo "Starting Flask web server on port $FLASK_PORT..."
 export PORT=$FLASK_PORT
+export OPENLLM_MODEL="TinyLlama/TinyLlama-1.1B-Chat-v1.0"
 cd app
 "$VENV_BIN/python" app.py
 

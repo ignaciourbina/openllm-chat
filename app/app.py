@@ -30,6 +30,8 @@ client = OpenAI(
     base_url=base_url,
     api_key=os.environ.get("OPENAI_API_KEY", "na")  # Use a dummy key if not set
 )
+model_name = os.environ.get("OPENLLM_MODEL", "TinyLlama/TinyLlama-1.1B-Chat-v1.0")
+
 
 @app.route('/')
 def index():
@@ -48,7 +50,7 @@ def chat():
     try:
         # Send a request to the model
         completion = client.chat.completions.create(
-            model="TinyLlama/TinyLlama-1.1B-Chat-v1.0",  # Specify the model you are serving
+            model=model_name,  # Specify the model you are serving
             messages=[
                 {"role": "user", "content": user_message}
             ]

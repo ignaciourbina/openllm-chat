@@ -64,6 +64,7 @@ def flask_app_server(openllm_server):
     env = os.environ.copy()
     env["PORT"] = str(FLASK_PORT)
     env["OPENLLM_BASE_URL"] = f"{OPENLLM_URL}/v1"
+    env["OPENLLM_MODEL"] = MODEL_ID
 
     command = [f"{VENV_PATH}/bin/python", "app/app.py"]
     
@@ -82,6 +83,7 @@ def flask_app_server(openllm_server):
     print("Tearing down Flask server...")
     os.killpg(os.getpgid(server_process.pid), signal.SIGTERM)
     server_process.wait()
+
 
 # --- E2E Test ---
 
